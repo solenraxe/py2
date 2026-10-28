@@ -121,6 +121,8 @@ def main():
 
     txtElem.text = '\n'.join(lines)
 
+    consoleTxt.text = inter.getCons()
+
     for i in range(len(lines)):
         y = TEXT_Y + (i) * LINE_HEIGHT
         numTxt = ui.comicSans.render(str(i+edVars.scroll+1) + ".", True, (255, 255, 255))

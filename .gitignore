@@ -1,0 +1,7 @@
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/settings.json
+build/temp.linux-x86_64-cpython-313/cpp/inter.o
+build/temp.linux-x86_64-cpython-313/cpp/interpreter.o
+build/temp.linux-x86_64-cpython-313/cpp/memory.o
+libraries/__pycache__/__init__.cpython-313.pyc

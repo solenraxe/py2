@@ -9,7 +9,7 @@ from distutils.core import Extension
 
 ext = Extension(
     "interpreter",
-    sources=["cpp/inter.pyx", "cpp/interpreter.cpp"],
+    sources=["cpp/inter.pyx", "cpp/memory.cpp", "cpp/interpreter.cpp"],
     include_dirs=["."],
     language="c++",
 )

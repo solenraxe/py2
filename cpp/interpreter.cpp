@@ -1,20 +1,10 @@
+#include "memory.h"
 #include <string>
 #include <vector>
 #include <map>
 #include <functional>
 #include <sstream>
 #include <iostream>
-
-using CmdFunc = std::function<void(const std::vector<std::string>&)>;
-std::map<std::string, CmdFunc> commands;
-
-void runPrint(const std::vector<std::string>& args) {
-    std::cout << "Hello World!!" << '\n';
-}
-
-void runVar(const std::vector<std::string>& args) {
-    std::cout << "Run Var" << '\n';
-}
 
 std::vector<std::string> splitString(std::string str, const char splitter) {
     std::vector<std::string> result;
@@ -36,7 +26,24 @@ std::vector<std::string> splitString(std::string str, const char splitter) {
     return result;
 }
 
+void runPrint(const std::vector<std::string>& args) {
+    std::string consoleTxt = getVar("sConsole");
+    consoleTxt = consoleTxt + '\n' + args[1];
+    setVar("sConsole", consoleTxt);
+}
+
+void runVar(const std::vector<std::string>& args) {
+    std::cout << "Run Var" << '\n';
+}
+
+using CmdFunc = std::function<void(const std::vector<std::string>&)>;
+std::map<std::string, CmdFunc> commands = {{"print", runPrint}, {"var", runVar}};
+
 namespace Extern {
+    std::string getConsole() {
+        return getVar("sConsole");
+    }
+
     void runLine(std::string txt) {
         auto args = splitString(txt, ' ');
 
@@ -50,8 +57,4 @@ namespace Extern {
             runVar(args);
         }
     }
-}
-
-int main() {
-    commands["print"] = runPrint;
 }
